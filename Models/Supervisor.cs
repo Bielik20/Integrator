@@ -11,14 +11,27 @@ namespace Integrator.Models
     class Supervisor
     {
         #region Cpp stuff
+
+        #region Transmitter
         const string transmitter = "transmitter.dll";
         [DllImport(transmitter, CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunTransmitter(int[] inputData, int frameLength, double[] realData, double[] imagData, int codMode, int modMode);
-
-        const string receiver = "receiver.dll";
-        [DllImport(receiver, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void RunReceiver(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
         #endregion
+
+        #region Receiver
+        const string receiver = "odbiornik_KZ.dll";
+        [DllImport(receiver, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RunReceiver_KZ(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
+
+        const string receiver2 = "odbiornik_SK.dll";
+        [DllImport(receiver2, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RunReceiver_SK(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
+        #endregion
+
+        #endregion
+
+        public delegate void ReceiverDelegate(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
+        public static ReceiverDelegate RunReceiver;
 
         #region Properties
         private SimulationData MySimulationData { get; set; }
@@ -60,7 +73,7 @@ namespace Integrator.Models
                 GenerateData();
                 //RunTransmitter(InputData, MySimulationData.FrameLength, RealData, ImagData, MySimulationData.CodingMode.Index, MySimulationData.ModulationMode.Index);
                 //RollEngine.RollNoise(RealData, ImagData, MySimulationData.SNR);
-                //RunReceiver(OutcomeData, MySimulationData.FrameLength, RealData, ImagData, MySimulationData.DecisionDepth, MySimulationData.CodingMode.Index, MySimulationData.ModulationMode.Index);
+                RunReceiver_SK(OutcomeData, MySimulationData.FrameLength, RealData, ImagData, MySimulationData.DecisionDepth, MySimulationData.CodingMode.Index, MySimulationData.ModulationMode.Index);
                 RollEngine.Roll(OutcomeData, MaxValue);
                 UpdateData();
             }

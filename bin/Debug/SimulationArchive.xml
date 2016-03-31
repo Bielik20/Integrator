@@ -1,23 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfSimulationData xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Integrator.Models">
   <SimulationData>
-    <BitsLost>169</BitsLost>
-    <BitsSend>400</BitsSend>
-    <CodingMode>
-      <Index>0</Index>
-      <Name>Wersja 2</Name>
-    </CodingMode>
-    <DecisionDepth>15</DecisionDepth>
-    <FrameLength>200</FrameLength>
-    <ModulationMode>
-      <Index>0</Index>
-      <Name>8-PSK</Name>
-    </ModulationMode>
-    <ReceiverAuthor>Kułacz - Zieliński</ReceiverAuthor>
-    <SNR>10</SNR>
-    <TransmitterAuthor>Jóźwiak - Frąckowiak</TransmitterAuthor>
-  </SimulationData>
-  <SimulationData>
     <BitsLost>602</BitsLost>
     <BitsSend>1200</BitsSend>
     <CodingMode>
@@ -84,5 +67,39 @@
     <ReceiverAuthor>Sienkiewicz - Knyrek</ReceiverAuthor>
     <SNR>10</SNR>
     <TransmitterAuthor>Piekrasi - Kaszuba</TransmitterAuthor>
+  </SimulationData>
+  <SimulationData>
+    <BitsLost>159</BitsLost>
+    <BitsSend>340</BitsSend>
+    <CodingMode>
+      <Index>0</Index>
+      <Name>Wersja 2</Name>
+    </CodingMode>
+    <DecisionDepth>15</DecisionDepth>
+    <FrameLength>200</FrameLength>
+    <ModulationMode>
+      <Index>0</Index>
+      <Name>8-PSK</Name>
+    </ModulationMode>
+    <ReceiverAuthor>Kułacz - Zieliński</ReceiverAuthor>
+    <SNR>10</SNR>
+    <TransmitterAuthor>Jóźwiak - Frąckowiak</TransmitterAuthor>
+  </SimulationData>
+  <SimulationData>
+    <BitsLost>153</BitsLost>
+    <BitsSend>340</BitsSend>
+    <CodingMode>
+      <Index>0</Index>
+      <Name>Wersja 2</Name>
+    </CodingMode>
+    <DecisionDepth>15</DecisionDepth>
+    <FrameLength>200</FrameLength>
+    <ModulationMode>
+      <Index>0</Index>
+      <Name>8-PSK</Name>
+    </ModulationMode>
+    <ReceiverAuthor>Kułacz - Zieliński</ReceiverAuthor>
+    <SNR>10</SNR>
+    <TransmitterAuthor>Jóźwiak - Frąckowiak</TransmitterAuthor>
   </SimulationData>
 </ArrayOfSimulationData>
