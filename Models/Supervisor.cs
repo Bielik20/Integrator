@@ -104,11 +104,11 @@ namespace Integrator.Models
             {
                 case 0:
                     SymbolLength = 2;
-                    MaxValue = 3;
+                    MaxValue = 4;
                     break;
                 case 1:
                     SymbolLength = 3;
-                    MaxValue = 7;
+                    MaxValue = 8;
                     break;
                 default:
                     break;
@@ -145,13 +145,14 @@ namespace Integrator.Models
             return (((i + (i >> 4)) & 0x0F0F0F0F) * 0x01010101) >> 24;
         }
 
+
         private void GenerateData()
         {
             InputData = new int[MySimulationData.FrameLength];
             OutcomeData = new int[MySimulationData.FrameLength];
             RealData = new double[MySimulationData.FrameLength];
             ImagData = new double[MySimulationData.FrameLength];
-            RollEngine.RollSymbols(InputData, MaxValue);
+            RollEngine.Roll(InputData, MaxValue);
         }
     }
 }
