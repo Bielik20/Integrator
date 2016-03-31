@@ -10,11 +10,11 @@ namespace Integrator.Models
     {
         static Random rnd = new Random();
 
-        public static void Roll(int[] tab, int maxVal)
+        public static void RollSymbols(int[] tab, int maxVal)
         {
             for (int i = 0; i < tab.Count(); i++)
             {
-                tab[i] = rnd.Next(0, maxVal);
+                tab[i] = rnd.Next(0, maxVal + 1);
             }
         }
 
