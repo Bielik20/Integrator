@@ -13,11 +13,11 @@ namespace Integrator.Models
         #region Cpp stuff
         const string transmitter = "transmitter.dll";
         [DllImport(transmitter, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void RunTransmitter(int[] inputData, int frameLength, double[] realData, double[] imagData, int modDepth, int codMode, int modMode);
+        public static extern void RunTransmitter(int[] inputData, int frameLength, double[] realData, double[] imagData, int codMode, int modMode);
 
         const string receiver = "receiver.dll";
         [DllImport(receiver, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void RunReceiver(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int modDepth, int codMode, int modMode);
+        public static extern void RunReceiver(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
         #endregion
 
         #region Properties
@@ -27,11 +27,30 @@ namespace Integrator.Models
         private double[] RealData { get; set; }
         private double[] ImagData { get; set; }
         private int SymbolLength { get; set; }
+        private int MaxValue { get; set; }
         #endregion
 
         public Supervisor(SimulationData MySimulationData)
         {
             this.MySimulationData = MySimulationData;
+            SetParameters();
+        }
+
+        private void SetParameters()
+        {
+            switch (MySimulationData.ModulationMode.Index)
+            {
+                case 0:
+                    SymbolLength = 2;
+                    MaxValue = 3;
+                    break;
+                case 1:
+                    SymbolLength = 3;
+                    MaxValue = 7;
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void Simulate()
@@ -39,18 +58,18 @@ namespace Integrator.Models
             while (MySimulationData.BitsLost < 100)
             {
                 GenerateData();
-                //RunTransmitter(InputData, MySimulationData.FrameLength, RealData, ImagData, MySimulationData.ModulationDepth, MySimulationData.CodingMode.Index, MySimulationData.ModulationMode.Index);
+                //RunTransmitter(InputData, MySimulationData.FrameLength, RealData, ImagData, MySimulationData.CodingMode.Index, MySimulationData.ModulationMode.Index);
                 //RollEngine.RollNoise(RealData, ImagData, MySimulationData.SNR);
-                //RunReceiver(OutcomeData, MySimulationData.FrameLength, RealData, ImagData, MySimulationData.ModulationDepth, MySimulationData.CodingMode.Index, MySimulationData.ModulationMode.Index);
-                RollEngine.Roll_4(OutcomeData);
+                //RunReceiver(OutcomeData, MySimulationData.FrameLength, RealData, ImagData, MySimulationData.DecisionDepth, MySimulationData.CodingMode.Index, MySimulationData.ModulationMode.Index);
+                RollEngine.Roll(OutcomeData, MaxValue);
                 UpdateData();
             }
         }
 
         private void UpdateData()
         {
-            MySimulationData.BitsSend += MySimulationData.FrameLength * SymbolLength;
-            for (int i = 0; i < InputData.Count(); i++)
+            MySimulationData.BitsSend += (MySimulationData.FrameLength - 2*MySimulationData.DecisionDepth) * SymbolLength;
+            for (int i = MySimulationData.DecisionDepth; i < InputData.Count() - MySimulationData.DecisionDepth; i++)
             {
                 var temp = InputData[i] ^ OutcomeData[i];
                 MySimulationData.BitsLost += CalculateHammingWeight(temp);
@@ -64,30 +83,14 @@ namespace Integrator.Models
             return (((i + (i >> 4)) & 0x0F0F0F0F) * 0x01010101) >> 24;
         }
 
+
         private void GenerateData()
         {
             InputData = new int[MySimulationData.FrameLength];
             OutcomeData = new int[MySimulationData.FrameLength];
-            RealData = new double[MySimulationData.FrameLength + MySimulationData.ModulationDepth];
-            ImagData = new double[MySimulationData.FrameLength + MySimulationData.ModulationDepth];
-
-            switch (MySimulationData.CodingMode.Index)
-            {
-                case 0:
-                    RollEngine.Roll_4(InputData);
-                    SymbolLength = 2;
-                    break;
-                case 1:
-                    RollEngine.Roll_16(InputData);
-                    SymbolLength = 4;
-                    break;
-                case 2:
-                    RollEngine.Roll_64(InputData);
-                    SymbolLength = 6;
-                    break;
-                default:
-                    break;
-            }
+            RealData = new double[MySimulationData.FrameLength + MySimulationData.DecisionDepth];
+            ImagData = new double[MySimulationData.FrameLength + MySimulationData.DecisionDepth];
+            RollEngine.Roll(InputData, MaxValue);
         }
     }
 }

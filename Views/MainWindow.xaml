@@ -29,7 +29,6 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="250" />
-
                 <RowDefinition />
             </Grid.RowDefinitions>
 
@@ -69,15 +68,15 @@
                 <ComboBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" ItemsSource="{Binding ModulationModes}" SelectedIndex="{Binding ModulationIndex}" />
 
                 <Label Grid.Column="0" Grid.Row="2" Content="Długość ramki:" />
-                <Slider Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Maximum="1000" Minimum="100" Value="{Binding FrameLength}" />
+                <Slider Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Maximum="5000" Minimum="1000" Value="{Binding FrameLength}" />
                 <Label Grid.Column="4" Grid.Row="2" Content="{Binding FrameLength}" />
 
-                <Label Grid.Column="0" Grid.Row="3" Content="Głębokość modulacji:" />
-                <Slider Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"  Maximum="100" Minimum="1" Value="{Binding ModulationDepth}" />
-                <Label Grid.Column="4" Grid.Row="3" Content="{Binding ModulationDepth}" />
+                <Label Grid.Column="0" Grid.Row="3" Content="Głębokość decyzji:" />
+                <Slider Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"  Maximum="100" Minimum="1" Value="{Binding DecisionDepth}" />
+                <Label Grid.Column="4" Grid.Row="3" Content="{Binding DecisionDepth}" />
 
                 <Label Grid.Column="0" Grid.Row="4" Content="SNR [dB]:" />
-                <Slider Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" Maximum="100" Minimum="1" Value="{Binding SNR}" />
+                <Slider Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" Maximum="40" Minimum="1" Value="{Binding SNR}" />
                 <Label Grid.Column="4" Grid.Row="4" Content="{Binding SNR}" />
 
                 <Label Grid.Column="0" Grid.Row="5" Content="Autor nadajnika:" />
@@ -143,8 +142,8 @@
                 <Label Grid.Row="0" Grid.Column="3" Content="Długość ramki:" />
                 <Label Grid.Row="0" Grid.Column="4" Content="{Binding MySimulationData.FrameLength}" />
 
-                <Label Grid.Row="1" Grid.Column="3" Content="Głębokość modulacji:" />
-                <Label Grid.Row="1" Grid.Column="4" Content="{Binding MySimulationData.ModulationDepth}" />
+                <Label Grid.Row="1" Grid.Column="3" Content="Głębokość decyzji:" />
+                <Label Grid.Row="1" Grid.Column="4" Content="{Binding MySimulationData.DecisionDepth}" />
 
                 <Label Grid.Row="2" Grid.Column="3" Content="SNR [dB]:" />
                 <Label Grid.Row="2" Grid.Column="4" Content="{Binding MySimulationData.SNR}" />
@@ -174,7 +173,7 @@
                             <GridViewColumn Header="TransmitterAuthor" DisplayMemberBinding="{Binding TransmitterAuthor}" util:GridViewSort.PropertyName="TransmitterAuthor" Width="{StaticResource listWidth}"/>
                             <GridViewColumn Header="ReceiverAuthor" DisplayMemberBinding="{Binding ReceiverAuthor}" util:GridViewSort.PropertyName="ReceiverAuthor" Width="{StaticResource listWidth}"/>
                             <GridViewColumn Header="FrameLength" DisplayMemberBinding="{Binding FrameLength}" util:GridViewSort.PropertyName="FrameLength" Width="{StaticResource listWidth}"/>
-                            <GridViewColumn Header="ModulationDepth" DisplayMemberBinding="{Binding ModulationDepth}" util:GridViewSort.PropertyName="ModulationDepth" Width="{StaticResource listWidth}"/>
+                            <GridViewColumn Header="DecisionDepth" DisplayMemberBinding="{Binding DecisionDepth}" util:GridViewSort.PropertyName="DecisionDepth" Width="{StaticResource listWidth}"/>
                             <GridViewColumn Header="SNR" DisplayMemberBinding="{Binding SNR}" util:GridViewSort.PropertyName="SNR" Width="80"/>
                             <GridViewColumn Header="ErrorRate" DisplayMemberBinding="{Binding ErrorRate}" util:GridViewSort.PropertyName="ErrorRate" Width="90"/>
                         </GridView>

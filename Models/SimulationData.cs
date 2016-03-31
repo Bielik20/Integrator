@@ -26,7 +26,7 @@ namespace Integrator.Models
         [DataMember]
         public int FrameLength { get; set; }
         [DataMember]
-        public int ModulationDepth { get; set; }
+        public int DecisionDepth { get; set; }
         [DataMember]
         public int SNR { get; set; }
         [DataMember]

@@ -32,12 +32,12 @@ namespace Integrator.ViewModels
         }
         private int _frameLength;
 
-        public int ModulationDepth
+        public int DecisionDepth
         {
-            get { return _modulationDepth; }
-            set { _modulationDepth = value; OnPropertyChanged("ModulationDepth"); }
+            get { return _decisionDepth; }
+            set { _decisionDepth = value; OnPropertyChanged("DecisionDepth"); }
         }
-        private int _modulationDepth;
+        private int _decisionDepth;
 
         public int SNR
         {
@@ -64,18 +64,18 @@ namespace Integrator.ViewModels
 
         public MainWindowViewModel()
         {
-            CodingModes = new string[3] { "Coding Mode 1" , "Coding Mode 2" , "Coding Mode 3" };
+            CodingModes = new string[3] { "Wersja 2", "Wersja 3", "Wersja 4" };
             CodingIndex = 0;
-            ModulationModes = new string[3] { "Modulation Mode 1", "Modulation Mode 2", "Modulation Mode 3" };
-            ModulationIndex = 1;
+            ModulationModes = new string[2] { "8-PSK", "16-QAM" };
+            ModulationIndex = 0;
 
             FrameLength = 200;
-            ModulationDepth = 15;
+            DecisionDepth = 15;
             SNR = 10;
 
-            TransAuthors = new string[2] { "Transmiter 1", "Transmiter 2" };
+            TransAuthors = new string[2] { "Jóźwiak - Frąckowiak", "Piekrasi - Kaszuba" };
             CurrTrans = TransAuthors[0];
-            ReceivAuthors = new string[3] { "Receiver 1", "Receiver 2", "Receiver 3" };
+            ReceivAuthors = new string[3] { "Kułacz - Zieliński", "Sienkiewicz - Knyrek", "Obuchowski - Szilke" };
             CurrReceiv = ReceivAuthors[0];
 
             ArchName = "SimulationArchive.xml";
@@ -130,7 +130,7 @@ namespace Integrator.ViewModels
                     Index = ModulationIndex
                 },
                 FrameLength = this.FrameLength,
-                ModulationDepth = this.ModulationDepth,
+                DecisionDepth = this.DecisionDepth,
                 SNR = this.SNR,
                 TransmitterAuthor = CurrTrans,
                 ReceiverAuthor = CurrReceiv,
