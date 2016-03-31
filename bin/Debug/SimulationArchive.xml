@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSimulationData xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Integrator.Models">
+  <SimulationData>
+    <BitsLost>171</BitsLost>
+    <BitsSend>400</BitsSend>
+    <CodingMode>
+      <Index>0</Index>
+      <Name>Coding Mode 1</Name>
+    </CodingMode>
+    <FrameLength>200</FrameLength>
+    <ModulationDepth>15</ModulationDepth>
+    <ModulationMode>
+      <Index>1</Index>
+      <Name>Modulation Mode 2</Name>
+    </ModulationMode>
+    <ReceiverAuthor>Receiver 1</ReceiverAuthor>
+    <SNR>42</SNR>
+    <TransmitterAuthor>Transmiter 1</TransmitterAuthor>
+  </SimulationData>
+  <SimulationData>
+    <BitsLost>192</BitsLost>
+    <BitsSend>400</BitsSend>
+    <CodingMode>
+      <Index>0</Index>
+      <Name>Coding Mode 1</Name>
+    </CodingMode>
+    <FrameLength>200</FrameLength>
+    <ModulationDepth>15</ModulationDepth>
+    <ModulationMode>
+      <Index>1</Index>
+      <Name>Modulation Mode 2</Name>
+    </ModulationMode>
+    <ReceiverAuthor>Receiver 1</ReceiverAuthor>
+    <SNR>24</SNR>
+    <TransmitterAuthor>Transmiter 1</TransmitterAuthor>
+  </SimulationData>
+  <SimulationData>
+    <BitsLost>586</BitsLost>
+    <BitsSend>1200</BitsSend>
+    <CodingMode>
+      <Index>2</Index>
+      <Name>Coding Mode 3</Name>
+    </CodingMode>
+    <FrameLength>200</FrameLength>
+    <ModulationDepth>15</ModulationDepth>
+    <ModulationMode>
+      <Index>1</Index>
+      <Name>Modulation Mode 2</Name>
+    </ModulationMode>
+    <ReceiverAuthor>Receiver 1</ReceiverAuthor>
+    <SNR>24</SNR>
+    <TransmitterAuthor>Transmiter 1</TransmitterAuthor>
+  </SimulationData>
+  <SimulationData>
+    <BitsLost>607</BitsLost>
+    <BitsSend>1200</BitsSend>
+    <CodingMode>
+      <Index>2</Index>
+      <Name>Coding Mode 3</Name>
+    </CodingMode>
+    <FrameLength>200</FrameLength>
+    <ModulationDepth>15</ModulationDepth>
+    <ModulationMode>
+      <Index>1</Index>
+      <Name>Modulation Mode 2</Name>
+    </ModulationMode>
+    <ReceiverAuthor>Receiver 2</ReceiverAuthor>
+    <SNR>24</SNR>
+    <TransmitterAuthor>Transmiter 1</TransmitterAuthor>
+  </SimulationData>
+  <SimulationData>
+    <BitsLost>595</BitsLost>
+    <BitsSend>1200</BitsSend>
+    <CodingMode>
+      <Index>2</Index>
+      <Name>Coding Mode 3</Name>
+    </CodingMode>
+    <FrameLength>200</FrameLength>
+    <ModulationDepth>15</ModulationDepth>
+    <ModulationMode>
+      <Index>1</Index>
+      <Name>Modulation Mode 2</Name>
+    </ModulationMode>
+    <ReceiverAuthor>Receiver 2</ReceiverAuthor>
+    <SNR>24</SNR>
+    <TransmitterAuthor>Transmiter 2</TransmitterAuthor>
+  </SimulationData>
+  <SimulationData>
+    <BitsLost>380</BitsLost>
+    <BitsSend>800</BitsSend>
+    <CodingMode>
+      <Index>1</Index>
+      <Name>Coding Mode 2</Name>
+    </CodingMode>
+    <FrameLength>200</FrameLength>
+    <ModulationDepth>15</ModulationDepth>
+    <ModulationMode>
+      <Index>1</Index>
+      <Name>Modulation Mode 2</Name>
+    </ModulationMode>
+    <ReceiverAuthor>Receiver 3</ReceiverAuthor>
+    <SNR>24</SNR>
+    <TransmitterAuthor>Transmiter 2</TransmitterAuthor>
+  </SimulationData>
+</ArrayOfSimulationData>

@@ -1,0 +1,186 @@
+﻿<Window x:Class="Integrator.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Integrator.Views"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:util="clr-namespace:GridViewSort;assembly=GridViewSort"
+        mc:Ignorable="d"
+        Title="TCM Simulation - Damian Bielecki" MinHeight="700" Height="680" MinWidth="1030" Width="100">
+    <!--Namespace update  "x:Class" , "xmlns:local"-->
+
+    <Window.Resources>
+        <System:Double x:Key="listWidth">130</System:Double>
+    </Window.Resources>
+    
+    <StackPanel HorizontalAlignment="Center" >
+        <StackPanel HorizontalAlignment="Center" Margin="0 10 0 30">
+            <Label Content="Symulacja systemu TCM 2016" FontSize="21.333" />
+        </StackPanel>
+
+        <Grid HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="525" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250" />
+
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.RowSpan="2">
+                <Grid.Resources>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="Height" Value="30" />
+                    </Style>
+                    <Style TargetType="{x:Type ComboBox}">
+                        <Setter Property="Height" Value="25" />
+                    </Style>
+                    <Style TargetType="{x:Type Slider}">
+                        <Setter Property="Height" Value="25" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition   />
+                    <ColumnDefinition Width="40"  />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Content="Tryb kodowania:" />
+                <ComboBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" ItemsSource="{Binding CodingModes}" SelectedIndex="{Binding CodingIndex}" />
+
+                <Label Grid.Column="0" Grid.Row="1" Content="Tryb modulacji:" />
+                <ComboBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" ItemsSource="{Binding ModulationModes}" SelectedIndex="{Binding ModulationIndex}" />
+
+                <Label Grid.Column="0" Grid.Row="2" Content="Długość ramki:" />
+                <Slider Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Maximum="1000" Minimum="100" Value="{Binding FrameLength}" />
+                <Label Grid.Column="4" Grid.Row="2" Content="{Binding FrameLength}" />
+
+                <Label Grid.Column="0" Grid.Row="3" Content="Głębokość modulacji:" />
+                <Slider Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"  Maximum="100" Minimum="1" Value="{Binding ModulationDepth}" />
+                <Label Grid.Column="4" Grid.Row="3" Content="{Binding ModulationDepth}" />
+
+                <Label Grid.Column="0" Grid.Row="4" Content="SNR [dB]:" />
+                <Slider Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" Maximum="100" Minimum="1" Value="{Binding SNR}" />
+                <Label Grid.Column="4" Grid.Row="4" Content="{Binding SNR}" />
+
+                <Label Grid.Column="0" Grid.Row="5" Content="Autor nadajnika:" />
+                <ComboBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="5" ItemsSource="{Binding TransAuthors}" SelectedItem="{Binding CurrTrans}" />
+
+                <Label Grid.Column="0" Grid.Row="6" Content="Autor odbiornika:" />
+                <ComboBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="6" ItemsSource="{Binding ReceivAuthors}" SelectedItem="{Binding CurrReceiv}" />
+                
+                <Button Grid.Row="7" Grid.ColumnSpan="4" Margin="10" Content="Symuluj" Command="{Binding SimulateCommand}" />
+            </Grid>
+
+            <StackPanel Grid.Column="1" Grid.RowSpan="3" Background="LightSteelBlue" Width="3" />
+
+            <chartingToolkit:Chart Grid.Column="2" Height="300" Title="Podgląd Symulacji" VerticalAlignment="Bottom" Width="500" BorderThickness="0">
+                <chartingToolkit:PieSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding Results}" IsSelectionEnabled="False">
+                </chartingToolkit:PieSeries>
+            </chartingToolkit:Chart>
+
+            <Grid Grid.Column="2" Grid.Row="3" IsEnabled="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="90" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="{x:Type Label}" >
+                        <Style.Triggers>
+                            <Trigger Property="Grid.Column" Value="0">
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+
+                            <Trigger Property="Grid.Column" Value="3">
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Resources>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Tryb kodowania:" />
+                <Label Grid.Row="0" Grid.Column="1" Content="{Binding MySimulationData.CodingMode.Name}" />
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Tryb modulacji:" />
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding MySimulationData.ModulationMode.Name}" />
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Autor nadajnika:" />
+                <Label Grid.Row="2" Grid.Column="1" Content="{Binding MySimulationData.TransmitterAuthor}" />
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Autor odbiornika:" />
+                <Label Grid.Row="3" Grid.Column="1" Content="{Binding MySimulationData.ReceiverAuthor}" />
+
+
+                <StackPanel Grid.Column="2" Grid.RowSpan="4" Background="BurlyWood" Width="2" HorizontalAlignment="Left" />
+
+                
+                <Label Grid.Row="0" Grid.Column="3" Content="Długość ramki:" />
+                <Label Grid.Row="0" Grid.Column="4" Content="{Binding MySimulationData.FrameLength}" />
+
+                <Label Grid.Row="1" Grid.Column="3" Content="Głębokość modulacji:" />
+                <Label Grid.Row="1" Grid.Column="4" Content="{Binding MySimulationData.ModulationDepth}" />
+
+                <Label Grid.Row="2" Grid.Column="3" Content="SNR [dB]:" />
+                <Label Grid.Row="2" Grid.Column="4" Content="{Binding MySimulationData.SNR}" />
+
+                <Label Grid.Row="3" Grid.Column="3" Content="Error Rate [%]:" />
+                <Label Grid.Row="3" Grid.Column="4" Content="{Binding MySimulationData.ErrorRate}" />
+            </Grid>
+
+        </Grid>
+        
+        <StackPanel Margin="0 50 0 0">
+            <Grid HorizontalAlignment="Center">
+                <ListView ItemsSource="{Binding SimDataList}" SelectedItem="{Binding SelectedData}" Height="150"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" IsSynchronizedWithCurrentItem="True" util:GridViewSort.AutoSort="True">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding DoubleClickCommand}" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonUp">
+                            <i:InvokeCommandAction Command="{Binding DeleteCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="CodingMode" DisplayMemberBinding="{Binding CodingMode.Name}" util:GridViewSort.PropertyName="CodingMode.Name" Width="{StaticResource listWidth}"/>
+                            <GridViewColumn Header="ModulationMode" DisplayMemberBinding="{Binding ModulationMode.Name}" util:GridViewSort.PropertyName="ModulationMode.Name" Width="{StaticResource listWidth}"/>
+                            <GridViewColumn Header="TransmitterAuthor" DisplayMemberBinding="{Binding TransmitterAuthor}" util:GridViewSort.PropertyName="TransmitterAuthor" Width="{StaticResource listWidth}"/>
+                            <GridViewColumn Header="ReceiverAuthor" DisplayMemberBinding="{Binding ReceiverAuthor}" util:GridViewSort.PropertyName="ReceiverAuthor" Width="{StaticResource listWidth}"/>
+                            <GridViewColumn Header="FrameLength" DisplayMemberBinding="{Binding FrameLength}" util:GridViewSort.PropertyName="FrameLength" Width="{StaticResource listWidth}"/>
+                            <GridViewColumn Header="ModulationDepth" DisplayMemberBinding="{Binding ModulationDepth}" util:GridViewSort.PropertyName="ModulationDepth" Width="{StaticResource listWidth}"/>
+                            <GridViewColumn Header="SNR" DisplayMemberBinding="{Binding SNR}" util:GridViewSort.PropertyName="SNR" Width="80"/>
+                            <GridViewColumn Header="ErrorRate" DisplayMemberBinding="{Binding ErrorRate}" util:GridViewSort.PropertyName="ErrorRate" Width="90"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </StackPanel>
+    </StackPanel>
+</Window>
