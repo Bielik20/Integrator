@@ -37,7 +37,7 @@ namespace Integrator.Models
         public int BitsSend { get; set; }
         [DataMember]
         public int BitsLost { get; set; }
-        public double ErrorRate { get { return Math.Round(System.Convert.ToDouble(BitsLost) / System.Convert.ToDouble(BitsSend)*100,3); } }
+        public double ErrorRate { get { return Math.Round(System.Convert.ToDouble(BitsLost) / System.Convert.ToDouble(BitsSend),9); } }
 
 
     }

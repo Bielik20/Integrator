@@ -11,27 +11,36 @@ namespace Integrator.Models
     class Supervisor
     {
         #region Cpp stuff
+        const string transmitter1 = "nadajnik_JF.dll";
+        [DllImport(transmitter1, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RunTransmitter_JF(int[] inputData, int frameLength, double[] realData, double[] imagData, int codMode, int modMode);
 
-        #region Transmitter
-        const string transmitter = "transmitter.dll";
-        [DllImport(transmitter, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void RunTransmitter(int[] inputData, int frameLength, double[] realData, double[] imagData, int codMode, int modMode);
-        #endregion
+        const string transmitter2 = "nadajnik_PK.dll";
+        [DllImport(transmitter2, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RunTransmitter_PK(int[] inputData, int frameLength, double[] realData, double[] imagData, int codMode, int modMode);
 
-        #region Receiver
-        const string receiver = "odbiornik_KZ.dll";
-        [DllImport(receiver, CallingConvention = CallingConvention.Cdecl)]
+        //----------------------------------------------------------------------------------------------------------------------------------------------------
+
+        const string receiver1 = "odbiornik_KZ.dll";
+        [DllImport(receiver1, CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunReceiver_KZ(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
 
         const string receiver2 = "odbiornik_SK.dll";
         [DllImport(receiver2, CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunReceiver_SK(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
+
+        const string receiver3 = "odbiornik_OS.dll";
+        [DllImport(receiver3, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RunReceiver_OS(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
         #endregion
 
-        #endregion
+        #region Delegates
+        public delegate void TransmitterDelegate(int[] inputData, int frameLength, double[] realData, double[] imagData, int codMode, int modMode);
+        public static TransmitterDelegate RunTransmitter;
 
         public delegate void ReceiverDelegate(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
         public static ReceiverDelegate RunReceiver;
+        #endregion
 
         #region Properties
         private SimulationData MySimulationData { get; set; }
@@ -47,6 +56,46 @@ namespace Integrator.Models
         {
             this.MySimulationData = MySimulationData;
             SetParameters();
+            SetTransmitter();
+            SetReceiver();
+        }
+
+        private void SetReceiver()
+        {
+            switch (MySimulationData.ReceiverAuthor)
+            {
+                case "Kułacz - Zieliński":
+                    RunReceiver = RunReceiver_KZ;
+                    break;
+
+                case "Sienkiewicz - Knyrek":
+                    RunReceiver = RunReceiver_SK;
+                    break;
+
+                case "Obuchowski - Szilke":
+                    RunReceiver = RunReceiver_OS;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void SetTransmitter()
+        {
+            switch (MySimulationData.TransmitterAuthor)
+            {
+                case "Jóźwiak - Frąckowiak":
+                    RunTransmitter = RunTransmitter_JF;
+                    break;
+
+                case "Piekrasi - Kaszuba":
+                    RunTransmitter = RunTransmitter_PK;
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         private void SetParameters()
@@ -55,11 +104,11 @@ namespace Integrator.Models
             {
                 case 0:
                     SymbolLength = 2;
-                    MaxValue = 3;
+                    MaxValue = 4;
                     break;
                 case 1:
                     SymbolLength = 3;
-                    MaxValue = 7;
+                    MaxValue = 8;
                     break;
                 default:
                     break;
@@ -71,10 +120,10 @@ namespace Integrator.Models
             while (MySimulationData.BitsLost < 100)
             {
                 GenerateData();
-                //RunTransmitter(InputData, MySimulationData.FrameLength, RealData, ImagData, MySimulationData.CodingMode.Index, MySimulationData.ModulationMode.Index);
-                //RollEngine.RollNoise(RealData, ImagData, MySimulationData.SNR);
-                RunReceiver_SK(OutcomeData, MySimulationData.FrameLength, RealData, ImagData, MySimulationData.DecisionDepth, MySimulationData.CodingMode.Index, MySimulationData.ModulationMode.Index);
-                RollEngine.Roll(OutcomeData, MaxValue);
+                    int[] _tempInputData = new int[MySimulationData.FrameLength]; InputData.CopyTo(_tempInputData, 0);
+                RunTransmitter(_tempInputData, MySimulationData.FrameLength, RealData, ImagData, MySimulationData.CodingMode.Index, MySimulationData.ModulationMode.Index);
+                RollEngine.RollNoise(RealData, ImagData, MySimulationData.SNR);
+                RunReceiver(OutcomeData, MySimulationData.FrameLength, RealData, ImagData, MySimulationData.DecisionDepth, MySimulationData.CodingMode.Index, MySimulationData.ModulationMode.Index);
                 UpdateData();
             }
         }
@@ -101,8 +150,8 @@ namespace Integrator.Models
         {
             InputData = new int[MySimulationData.FrameLength];
             OutcomeData = new int[MySimulationData.FrameLength];
-            RealData = new double[MySimulationData.FrameLength + MySimulationData.DecisionDepth];
-            ImagData = new double[MySimulationData.FrameLength + MySimulationData.DecisionDepth];
+            RealData = new double[MySimulationData.FrameLength];
+            ImagData = new double[MySimulationData.FrameLength];
             RollEngine.Roll(InputData, MaxValue);
         }
     }

@@ -69,7 +69,7 @@ namespace Integrator.ViewModels
             ModulationModes = new string[2] { "8-PSK", "16-QAM" };
             ModulationIndex = 0;
 
-            FrameLength = 200;
+            FrameLength = 2000;
             DecisionDepth = 15;
             SNR = 10;
 
