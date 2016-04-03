@@ -18,23 +18,6 @@
     <TransmitterAuthor>Jóźwiak - Frąckowiak</TransmitterAuthor>
   </SimulationData>
   <SimulationData>
-    <BitsLost>4571</BitsLost>
-    <BitsSend>9069</BitsSend>
-    <CodingMode>
-      <Index>2</Index>
-      <Name>Wersja 4</Name>
-    </CodingMode>
-    <DecisionDepth>15</DecisionDepth>
-    <FrameLength>3053</FrameLength>
-    <ModulationMode>
-      <Index>1</Index>
-      <Name>16-QAM</Name>
-    </ModulationMode>
-    <ReceiverAuthor>Sienkiewicz - Knyrek</ReceiverAuthor>
-    <SNR>10</SNR>
-    <TransmitterAuthor>Piekrasi - Kaszuba</TransmitterAuthor>
-  </SimulationData>
-  <SimulationData>
     <BitsLost>4527</BitsLost>
     <BitsSend>9069</BitsSend>
     <CodingMode>
@@ -69,23 +52,6 @@
     <TransmitterAuthor>Piekrasi - Kaszuba</TransmitterAuthor>
   </SimulationData>
   <SimulationData>
-    <BitsLost>2009</BitsLost>
-    <BitsSend>3940</BitsSend>
-    <CodingMode>
-      <Index>0</Index>
-      <Name>Wersja 2</Name>
-    </CodingMode>
-    <DecisionDepth>15</DecisionDepth>
-    <FrameLength>2000</FrameLength>
-    <ModulationMode>
-      <Index>0</Index>
-      <Name>8-PSK</Name>
-    </ModulationMode>
-    <ReceiverAuthor>Kułacz - Zieliński</ReceiverAuthor>
-    <SNR>10</SNR>
-    <TransmitterAuthor>Jóźwiak - Frąckowiak</TransmitterAuthor>
-  </SimulationData>
-  <SimulationData>
     <BitsLost>4238</BitsLost>
     <BitsSend>8454</BitsSend>
     <CodingMode>
@@ -99,57 +65,6 @@
       <Name>16-QAM</Name>
     </ModulationMode>
     <ReceiverAuthor>Sienkiewicz - Knyrek</ReceiverAuthor>
-    <SNR>10</SNR>
-    <TransmitterAuthor>Jóźwiak - Frąckowiak</TransmitterAuthor>
-  </SimulationData>
-  <SimulationData>
-    <BitsLost>1980</BitsLost>
-    <BitsSend>3940</BitsSend>
-    <CodingMode>
-      <Index>0</Index>
-      <Name>Wersja 2</Name>
-    </CodingMode>
-    <DecisionDepth>15</DecisionDepth>
-    <FrameLength>2000</FrameLength>
-    <ModulationMode>
-      <Index>0</Index>
-      <Name>8-PSK</Name>
-    </ModulationMode>
-    <ReceiverAuthor>Kułacz - Zieliński</ReceiverAuthor>
-    <SNR>10</SNR>
-    <TransmitterAuthor>Jóźwiak - Frąckowiak</TransmitterAuthor>
-  </SimulationData>
-  <SimulationData>
-    <BitsLost>1979</BitsLost>
-    <BitsSend>3940</BitsSend>
-    <CodingMode>
-      <Index>0</Index>
-      <Name>Wersja 2</Name>
-    </CodingMode>
-    <DecisionDepth>15</DecisionDepth>
-    <FrameLength>2000</FrameLength>
-    <ModulationMode>
-      <Index>0</Index>
-      <Name>8-PSK</Name>
-    </ModulationMode>
-    <ReceiverAuthor>Kułacz - Zieliński</ReceiverAuthor>
-    <SNR>10</SNR>
-    <TransmitterAuthor>Jóźwiak - Frąckowiak</TransmitterAuthor>
-  </SimulationData>
-  <SimulationData>
-    <BitsLost>1991</BitsLost>
-    <BitsSend>3940</BitsSend>
-    <CodingMode>
-      <Index>0</Index>
-      <Name>Wersja 2</Name>
-    </CodingMode>
-    <DecisionDepth>15</DecisionDepth>
-    <FrameLength>2000</FrameLength>
-    <ModulationMode>
-      <Index>0</Index>
-      <Name>8-PSK</Name>
-    </ModulationMode>
-    <ReceiverAuthor>Kułacz - Zieliński</ReceiverAuthor>
     <SNR>10</SNR>
     <TransmitterAuthor>Jóźwiak - Frąckowiak</TransmitterAuthor>
   </SimulationData>
