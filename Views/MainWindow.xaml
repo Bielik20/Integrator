@@ -148,7 +148,7 @@
                 <Label Grid.Row="2" Grid.Column="3" Content="SNR [dB]:" />
                 <Label Grid.Row="2" Grid.Column="4" Content="{Binding MySimulationData.SNR}" />
 
-                <Label Grid.Row="3" Grid.Column="3" Content="Error Rate [%]:" />
+                <Label Grid.Row="3" Grid.Column="3" Content="Error Rate:" />
                 <Label Grid.Row="3" Grid.Column="4" Content="{Binding MySimulationData.ErrorRate}" />
             </Grid>
 

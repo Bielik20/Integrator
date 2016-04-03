@@ -13,25 +13,25 @@ namespace Integrator.Models
         #region Cpp stuff
         const string transmitter1 = "nadajnik_JF.dll";
         [DllImport(transmitter1, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void RunTransmitter_JF(int[] inputData, int frameLength, double[] realData, double[] imagData, int codMode, int modMode);
+        private static extern void RunTransmitter_JF(int[] inputData, int frameLength, double[] realData, double[] imagData, int codMode, int modMode);
 
         const string transmitter2 = "nadajnik_PK.dll";
         [DllImport(transmitter2, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void RunTransmitter_PK(int[] inputData, int frameLength, double[] realData, double[] imagData, int codMode, int modMode);
+        private static extern void RunTransmitter_PK(int[] inputData, int frameLength, double[] realData, double[] imagData, int codMode, int modMode);
 
         //----------------------------------------------------------------------------------------------------------------------------------------------------
 
         const string receiver1 = "odbiornik_KZ.dll";
         [DllImport(receiver1, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void RunReceiver_KZ(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
+        private static extern void RunReceiver_KZ(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
 
         const string receiver2 = "odbiornik_SK.dll";
         [DllImport(receiver2, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void RunReceiver_SK(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
+        private static extern void RunReceiver_SK(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
 
         const string receiver3 = "odbiornik_OS.dll";
         [DllImport(receiver3, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void RunReceiver_OS(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
+        private static extern void RunReceiver_OS(int[] outcomeData, int frameLength, double[] realData, double[] imagData, int decDepth, int codMode, int modMode);
         #endregion
 
         #region Delegates
