@@ -9,30 +9,33 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:util="clr-namespace:GridViewSort;assembly=GridViewSort"
         mc:Ignorable="d"
-        Title="TCM Simulation - Damian Bielecki" MinHeight="700" Height="680" MinWidth="1030" Width="100">
+        Title="TCM Simulation - Damian Bielecki" MinHeight="700" Height="680" MinWidth="1050" Width="100">
     <!--Namespace update  "x:Class" , "xmlns:local"-->
 
     <Window.Resources>
         <System:Double x:Key="listWidth">130</System:Double>
     </Window.Resources>
-    
-    <StackPanel HorizontalAlignment="Center" >
-        <StackPanel HorizontalAlignment="Center" Margin="0 10 0 30">
-            <Label Content="Symulacja systemu TCM 2016" FontSize="21.333" />
-        </StackPanel>
 
-        <Grid HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400" />
-                <ColumnDefinition Width="40"/>
-                <ColumnDefinition Width="525" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="250" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+    <Grid Margin="0 10 0 30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="100" MinWidth="20" />
+            <ColumnDefinition MinWidth="400" />
+            <ColumnDefinition MaxWidth="200" MinWidth="70" />
+            <ColumnDefinition Width="525" />
+            <ColumnDefinition MaxWidth="100" MinWidth="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="250" />
+            <RowDefinition MaxHeight="200" />
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-            <Grid Grid.RowSpan="2">
+            <Label Grid.ColumnSpan="3" Grid.Column="1" Content="Symulacja TCM - 2016" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26.667" />
+            
+            <Grid Grid.Column="1" Grid.Row="2" Grid.RowSpan="2">
                 <Grid.Resources>
                     <Style TargetType="{x:Type Label}">
                         <Setter Property="Height" Value="30" />
@@ -46,8 +49,7 @@
                 </Grid.Resources>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="140" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition   />
+                    <ColumnDefinition MinWidth="200" />
                     <ColumnDefinition Width="40"  />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -62,40 +64,40 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Tryb kodowania:" />
-                <ComboBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" ItemsSource="{Binding CodingModes}" SelectedIndex="{Binding CodingIndex}" />
+                <ComboBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" ItemsSource="{Binding CodingModes}" SelectedIndex="{Binding CodingIndex}" />
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Tryb modulacji:" />
-                <ComboBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" ItemsSource="{Binding ModulationModes}" SelectedIndex="{Binding ModulationIndex}" />
+                <ComboBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding ModulationModes}" SelectedIndex="{Binding ModulationIndex}" />
 
                 <Label Grid.Column="0" Grid.Row="2" Content="Długość ramki:" />
-                <Slider Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Maximum="5000" Minimum="1000" Value="{Binding FrameLength}" />
-                <Label Grid.Column="4" Grid.Row="2" Content="{Binding FrameLength}" />
+                <Slider Grid.Column="1" Grid.Row="2" Maximum="5000" Minimum="1000" Value="{Binding FrameLength}" />
+                <Label Grid.Column="2" Grid.Row="2" Content="{Binding FrameLength}" />
 
                 <Label Grid.Column="0" Grid.Row="3" Content="Głębokość decyzji:" />
-                <Slider Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"  Maximum="100" Minimum="1" Value="{Binding DecisionDepth}" />
-                <Label Grid.Column="4" Grid.Row="3" Content="{Binding DecisionDepth}" />
+                <Slider Grid.Column="1" Grid.Row="3"  Maximum="100" Minimum="1" Value="{Binding DecisionDepth}" />
+                <Label Grid.Column="2" Grid.Row="3" Content="{Binding DecisionDepth}" />
 
                 <Label Grid.Column="0" Grid.Row="4" Content="SNR [dB]:" />
-                <Slider Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" Maximum="40" Minimum="1" Value="{Binding SNR}" />
-                <Label Grid.Column="4" Grid.Row="4" Content="{Binding SNR}" />
+                <Slider Grid.Column="1" Grid.Row="4" Maximum="40" Minimum="1" Value="{Binding SNR}" />
+                <Label Grid.Column="2" Grid.Row="4" Content="{Binding SNR}" />
 
                 <Label Grid.Column="0" Grid.Row="5" Content="Autor nadajnika:" />
-                <ComboBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="5" ItemsSource="{Binding TransAuthors}" SelectedItem="{Binding CurrTrans}" />
+                <ComboBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5" ItemsSource="{Binding TransAuthors}" SelectedItem="{Binding CurrTrans}" />
 
                 <Label Grid.Column="0" Grid.Row="6" Content="Autor odbiornika:" />
-                <ComboBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="6" ItemsSource="{Binding ReceivAuthors}" SelectedItem="{Binding CurrReceiv}" />
+                <ComboBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" ItemsSource="{Binding ReceivAuthors}" SelectedItem="{Binding CurrReceiv}" />
                 
-                <Button Grid.Row="7" Grid.ColumnSpan="4" Margin="10" Content="Symuluj" Command="{Binding SimulateCommand}" />
+                <Button Grid.Row="7" Grid.ColumnSpan="3" Margin="10" Content="Symuluj" Command="{Binding SimulateCommand}" />
             </Grid>
 
-            <StackPanel Grid.Column="1" Grid.RowSpan="3" Background="LightSteelBlue" Width="3" />
+            <StackPanel Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Background="LightSteelBlue" Width="3" />
 
-            <chartingToolkit:Chart Grid.Column="2" Height="300" Title="Podgląd Symulacji" VerticalAlignment="Bottom" Width="500" BorderThickness="0">
+            <chartingToolkit:Chart Grid.Column="3" Grid.Row="2" Height="300" Title="Podgląd Symulacji" VerticalAlignment="Bottom" Width="525" BorderThickness="0">
                 <chartingToolkit:PieSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding Results}" IsSelectionEnabled="False">
                 </chartingToolkit:PieSeries>
             </chartingToolkit:Chart>
 
-            <Grid Grid.Column="2" Grid.Row="3" IsEnabled="False">
+            <Grid Grid.Column="3" Grid.Row="3" IsEnabled="False">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -152,12 +154,10 @@
                 <Label Grid.Row="3" Grid.Column="4" Content="{Binding MySimulationData.ErrorRate}" />
             </Grid>
 
-        </Grid>
-        
-        <StackPanel Margin="0 50 0 0">
-            <Grid HorizontalAlignment="Center">
-                <ListView ItemsSource="{Binding SimDataList}" SelectedItem="{Binding SelectedData}" Height="150"
+            <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+                <ListView ItemsSource="{Binding SimDataList}" SelectedItem="{Binding SelectedData}"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" IsSynchronizedWithCurrentItem="True" util:GridViewSort.AutoSort="True">
+                    
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
                             <i:InvokeCommandAction Command="{Binding DoubleClickCommand}" />
@@ -166,20 +166,29 @@
                             <i:InvokeCommandAction Command="{Binding DeleteCommand}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="CodingMode" DisplayMemberBinding="{Binding CodingMode.Name}" util:GridViewSort.PropertyName="CodingMode.Name" Width="{StaticResource listWidth}"/>
-                            <GridViewColumn Header="ModulationMode" DisplayMemberBinding="{Binding ModulationMode.Name}" util:GridViewSort.PropertyName="ModulationMode.Name" Width="{StaticResource listWidth}"/>
-                            <GridViewColumn Header="TransmitterAuthor" DisplayMemberBinding="{Binding TransmitterAuthor}" util:GridViewSort.PropertyName="TransmitterAuthor" Width="{StaticResource listWidth}"/>
-                            <GridViewColumn Header="ReceiverAuthor" DisplayMemberBinding="{Binding ReceiverAuthor}" util:GridViewSort.PropertyName="ReceiverAuthor" Width="{StaticResource listWidth}"/>
-                            <GridViewColumn Header="FrameLength" DisplayMemberBinding="{Binding FrameLength}" util:GridViewSort.PropertyName="FrameLength" Width="{StaticResource listWidth}"/>
-                            <GridViewColumn Header="DecisionDepth" DisplayMemberBinding="{Binding DecisionDepth}" util:GridViewSort.PropertyName="DecisionDepth" Width="{StaticResource listWidth}"/>
-                            <GridViewColumn Header="SNR" DisplayMemberBinding="{Binding SNR}" util:GridViewSort.PropertyName="SNR" Width="80"/>
-                            <GridViewColumn Header="ErrorRate" DisplayMemberBinding="{Binding ErrorRate}" util:GridViewSort.PropertyName="ErrorRate" Width="90"/>
-                        </GridView>
-                    </ListView.View>
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="CodingMode" DisplayMemberBinding="{Binding CodingMode.Name}" util:GridViewSort.PropertyName="CodingMode.Name" Width="{StaticResource listWidth}"/>
+                        <GridViewColumn Header="ModulationMode" DisplayMemberBinding="{Binding ModulationMode.Name}" util:GridViewSort.PropertyName="ModulationMode.Name" Width="{StaticResource listWidth}"/>
+                        <GridViewColumn Header="TransmitterAuthor" DisplayMemberBinding="{Binding TransmitterAuthor}" util:GridViewSort.PropertyName="TransmitterAuthor" Width="{StaticResource listWidth}"/>
+                        <GridViewColumn Header="ReceiverAuthor" DisplayMemberBinding="{Binding ReceiverAuthor}" util:GridViewSort.PropertyName="ReceiverAuthor" Width="{StaticResource listWidth}"/>
+                        <GridViewColumn Header="FrameLength" DisplayMemberBinding="{Binding FrameLength}" util:GridViewSort.PropertyName="FrameLength" Width="{StaticResource listWidth}"/>
+                        <GridViewColumn Header="DecisionDepth" DisplayMemberBinding="{Binding DecisionDepth}" util:GridViewSort.PropertyName="DecisionDepth" Width="{StaticResource listWidth}"/>
+                        <GridViewColumn Header="SNR" DisplayMemberBinding="{Binding SNR}" util:GridViewSort.PropertyName="SNR" Width="80"/>
+                        <GridViewColumn Header="ErrorRate" DisplayMemberBinding="{Binding ErrorRate}" util:GridViewSort.PropertyName="ErrorRate" Width="90"/>
+                    </GridView>
+                </ListView.View>
                 </ListView>
             </Grid>
-        </StackPanel>
-    </StackPanel>
+
+        </Grid>
+        
 </Window>
