@@ -88,6 +88,43 @@ namespace Integrator.ViewModels
             SimulateCommand = new RelayCommand(_ => Simulate());
             DoubleClickCommand = new RelayCommand(_ => { MySimulationData = SelectedData; UpdateUI(); });
             DeleteCommand = new RelayCommand(_ => { SimDataList.Remove(SelectedData); SerializeList(); });
+
+
+
+            RunTest();
+        }
+
+        private void RunTest()
+        {
+            var rnd = new Random();
+            double srednia1 = 0;
+            double srednia2 = 0;
+            double wariancja1 = 0;
+            double wariancja2 = 0;
+            int count = 1000000;
+
+            for (int i = 0; i < count; i++)
+            {
+                double x1, x2, w, y1, y2;
+                do
+                {
+                    x1 = 2.0 * rnd.NextDouble() - 1.0;
+                    x2 = 2.0 * rnd.NextDouble() - 1.0;
+                    w = x1 * x1 + x2 * x2;
+                } while (w >= 1.0);
+
+                w = Math.Sqrt((-2.0 * Math.Log(w)) / w);
+                y1 = x1 * w;
+                y2 = x2 * w;
+
+                srednia1 += y1 / count; srednia2 += y2 / count;
+                wariancja1 += Math.Pow(y1, 2) / count;
+                wariancja2 += Math.Pow(y2, 2) / count;
+            }
+            var message = "Średnia: " + srednia1.ToString() + " , " + srednia2.ToString() + "\n" +
+                "Wariancja: " + wariancja1.ToString() + " , " + wariancja2.ToString();
+            
+
         }
 
         public void Simulate()
