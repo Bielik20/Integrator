@@ -88,10 +88,6 @@ namespace Integrator.ViewModels
             SimulateCommand = new RelayCommand(_ => Simulate());
             DoubleClickCommand = new RelayCommand(_ => { MySimulationData = SelectedData; UpdateUI(); });
             DeleteCommand = new RelayCommand(_ => { SimDataList.Remove(SelectedData); SerializeList(); });
-
-
-
-            RunTest();
         }
 
         private void RunTest()
@@ -121,10 +117,7 @@ namespace Integrator.ViewModels
                 wariancja1 += Math.Pow(y1, 2) / count;
                 wariancja2 += Math.Pow(y2, 2) / count;
             }
-            var message = "Średnia: " + srednia1.ToString() + " , " + srednia2.ToString() + "\n" +
-                "Wariancja: " + wariancja1.ToString() + " , " + wariancja2.ToString();
             
-
         }
 
         public void Simulate()
