@@ -20,7 +20,7 @@ namespace Integrator.Models
 
         public static void RollNoise(double[] real, double[] imag, int snr)
         {
-            double alfa = Math.Sqrt(0.5 * Math.Pow(10, -snr / 10));
+            double alfa = Math.Sqrt(0.5 * Math.Pow(10, -snr / 10.0));
 
             for (int i = 0; i < real.Count(); i++)
             {
